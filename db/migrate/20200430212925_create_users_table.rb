@@ -6,5 +6,6 @@ class CreateUsersTable < ActiveRecord::Migration
       t.string :password_digest #encrypts the users password
       
       t.timestamps null: false
+    end
   end
 end
