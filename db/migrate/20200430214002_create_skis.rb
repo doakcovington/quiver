@@ -3,7 +3,7 @@ class CreateSkis < ActiveRecord::Migration
     create_table :skis do |t|
       t.string :name
       t.string :brand
-      t.string :type
+      t.string :category
       t.integer :user_id
 
       t.timestamps null: false
