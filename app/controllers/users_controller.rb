@@ -6,7 +6,7 @@ class UsersController < ApplicationController # => Gives class every method insi
     end
 
     post '/login' do
-        
+        binding.pry
     end
 
     #renders signup page
