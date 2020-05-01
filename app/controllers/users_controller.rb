@@ -12,7 +12,7 @@ class UsersController < ApplicationController # => Gives class every method insi
         if @user.authenticate(params[:params])
             #redirect
             session[:user_id] = @user.id #logs user in
-            redirect "/users/#{@user.id}"
+            redirect "users/#{@user.id}"
         else
             #tell user info is invalid
             #redirect to login page
@@ -24,7 +24,7 @@ class UsersController < ApplicationController # => Gives class every method insi
 
     end
 
-    get "/users/:id/" do
+    get '/users/:id/' do
         "Hello"
     end
 
