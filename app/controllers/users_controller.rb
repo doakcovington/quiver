@@ -5,6 +5,10 @@ class UsersController < ApplicationController # => Gives class every method insi
         erb :login
     end
 
+    post '/login' do
+        
+    end
+
     #renders signup page
     get '/signup' do
 
