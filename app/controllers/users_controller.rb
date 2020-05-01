@@ -16,22 +16,24 @@ class UsersController < ApplicationController # => Gives class every method insi
         else
             #tell user info is invalid
             #redirect to login page
-            redirect '/signup'
+            redirect '/users/signup'
         end
     end
 
     #renders signup page
     get '/signup' do
-        erb :signup
+        erb :'/users/signup'
     end
 
     post '/users' do
-        binding.pry
+        #uses activerecord validations to make sure user entered in correct info
         @user = User.create(params)
+        
+        redirect "/users/#{@user.id}"
     end
 
-    get '/users/:id/' do
-        "Hello"
+    get '/users/:id' do
+        erb :'/users/show'
     end
 
 end
