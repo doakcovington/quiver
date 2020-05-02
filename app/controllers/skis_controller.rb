@@ -1,12 +1,17 @@
 class SkisController < ApplicationController
 
-    get '/ski_collection/new' do
+    get '/skis' do
+        @skis = Ski.all 
+        binding.pry
+    end
+
+    get '/skis/new' do
         erb :'/skis/new'
     end
 
-    get '/ski_collection' do
-        @ski_collection = Ski.all 
-        binding.pry
+    post '/skis' do
+
     end
+
 
 end
