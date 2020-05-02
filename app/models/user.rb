@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
     validates :password, presence: true
     validates_format_of :email, :with => /\w+@\w+\.\w+/
 
+    #find the most common type of ski a user has?
+
 end
