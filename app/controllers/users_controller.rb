@@ -9,11 +9,9 @@ class UsersController < ApplicationController # => Gives class every method insi
         #sets @user equal to current email address
         #if returns 'nil' then user needs to signup
         @user = User.find_by(email: params[:email])# email: is the key (find_by requires key/value pair)
-        binding.pry
         if @user && @user.authenticate(params[:password])
             #redirect
             session[:user_id] = @user.id #logs user in
-            binding.pry
             redirect "users/#{@user.id}"
         else
             #tell user info is invalid
