@@ -20,5 +20,9 @@ class SkisController < ApplicationController
         end#if create ski form doesn't have any blank spaces
     end
 
+    get "/skis/:id" do
+        @ski = Ski.find(params[:id])
+         erb :'/skis/show'
+    end
 
 end
