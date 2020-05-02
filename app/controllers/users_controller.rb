@@ -8,15 +8,17 @@ class UsersController < ApplicationController # => Gives class every method insi
     post '/login' do
         #sets @user equal to current email address
         #if returns 'nil' then user needs to signup
-        @user = User.find_by(email: params[:email]) # email: is the key (find_by requires key/value pair)
-        if @user.authenticate(params[:params])
+        @user = User.find_by(email: params[:email])# email: is the key (find_by requires key/value pair)
+        binding.pry
+        if @user && @user.authenticate(params[:password])
             #redirect
             session[:user_id] = @user.id #logs user in
+            binding.pry
             redirect "users/#{@user.id}"
         else
             #tell user info is invalid
             #redirect to login page
-            redirect '/users/signup'
+            redirect '/login'
         end
     end
 
@@ -28,7 +30,7 @@ class UsersController < ApplicationController # => Gives class every method insi
     post '/users' do
         #uses activerecord validations to make sure user entered in correct info
         @user = User.create(params)
-        
+        session[:user_id] = @user.id
         redirect "/users/#{@user.id}"
     end
 
