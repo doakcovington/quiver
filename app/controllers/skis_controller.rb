@@ -25,4 +25,9 @@ class SkisController < ApplicationController
          erb :'/skis/show'
     end
 
+    get "/skis/:id/edit" do
+        @ski = Ski.find(params[:id])
+        erb :'/skis/edit'
+    end
+
 end
