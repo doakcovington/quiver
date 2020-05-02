@@ -12,7 +12,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    if_logged_in
     erb :welcome
   end
 
