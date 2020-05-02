@@ -1,2 +1,4 @@
-<h1><%="#{@ski.brand.capitalize} #{@ski.name.capitalize}"%></h1>
-<p><%="Category => #{@ski.category.capitalize}"%></p>
+<h1><%="#{@ski.brand} #{@ski.name }"%></h1>
+<p><%="Category => #{@ski.category}"%></p>
+
+<a href="/skis/<%= @ski.id %>/edit">Edit Ski</a>
