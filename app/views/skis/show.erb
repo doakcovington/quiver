@@ -3,7 +3,7 @@
 
 <a href="/skis/<%= @ski.id %>/edit">Edit Ski</a><br><br>
 
-<form class="" action="/skis<%= @ski.id %>" method="POST">
+<form class="" action="/skis/<%= @ski.id %>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" name="" value ="Remove Ski from Collection">
 </form>

@@ -15,12 +15,13 @@ class SkisController < ApplicationController
         if !logged_in?
             redirect '/login'
         end
-        if params[:name] || params[:brand] || params[:category] != ""
+        if params[:name] != "" && params[:brand] != "" && params[:category] != "" #checks if all text fields contain text
             @ski = Ski.create(name: params[:name], brand: params[:brand], category: params[:category], user_id: @current_user.id)
+            binding.pry
              redirect "/skis/#{@ski.id}"
         else
             redirect '/skis/new'
-        end#if create ski form doesn't have any blank spaces
+        end#
     end
 
     get "/skis/:id" do
@@ -52,9 +53,8 @@ class SkisController < ApplicationController
     delete '/skis/:id' do
         @ski = Ski.find(params[:id])
         if @ski.user == current_user && logged_in? #only the current user can edit their ski
-            binding.pry
             @ski.destroy
-            redirect "/skis/show"
+            redirect "/skis"
         else
             redirect "users/#{current_user.id}"
         end
