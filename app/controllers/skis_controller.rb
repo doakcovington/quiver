@@ -1,7 +1,8 @@
 class SkisController < ApplicationController
 
     get '/skis' do
-        @skis = Ski.all  
+        @skis = Ski.all
+        erb :'skis/show'
     end
 
     get '/skis/new' do
@@ -33,7 +34,13 @@ class SkisController < ApplicationController
     #Changes the attributes for the ski
     patch '/skis/:id' do
         @ski = Ski.find(params[:id]) #finds the ski
-        redirect erb :'/skis/show' #shows the ski
+        @ski.update(name: params[:name], brand: params[:brand], category: params[:category])
+        binding.pry
+        redirect "/skis/#{@ski.id}" #shows the ski
     end
+
+    # def find_ski_with_params_id
+    #     @ski = Ski.find(params[:id]) 
+    # end
 
 end
