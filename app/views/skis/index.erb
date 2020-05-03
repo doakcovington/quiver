@@ -3,7 +3,7 @@
 
 <% @user.skis.each do |ski| %>
     <h4><a href="/skis/<%= ski.id %>"><%= ski.created_at %></a></h4>
-    <strong><%= "#{ski.brand} #{ski.name}"%></strong>
-    <p><%= ski.category %></p>
+    <strong>Name: <%= "#{ski.brand} #{ski.name}"%></strong>
+    <p>Category: <%= ski.category %></p>
     <br><br>
 <% end %>
