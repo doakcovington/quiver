@@ -2,7 +2,8 @@ class SkisController < ApplicationController
 
     get '/skis' do
         @user = current_user
-        @skis = Ski.all
+        @skis = current_user.skis
+        #binding.pry
         erb :'skis/index'
     end
 
