@@ -1,1 +1,9 @@
 <!-- List of ski links will go here -->  
+<h1><%= "#{@user.name}'s Quiver:" %></h1>
+
+<% @user.skis.each do |ski| %>
+    <h4><a href="/skis/<%= ski.id %>"><%= ski.created_at %></a></h4>
+    <strong><%= "#{ski.brand} #{ski.name}"%></strong>
+    <p><%= ski.category %></p>
+    <br><br>
+<% end %>

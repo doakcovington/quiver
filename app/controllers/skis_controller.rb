@@ -1,6 +1,7 @@
 class SkisController < ApplicationController
 
     get '/skis' do
+        @user = current_user
         @skis = Ski.all
         erb :'skis/index'
     end
