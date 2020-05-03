@@ -2,7 +2,7 @@ class SkisController < ApplicationController
 
     get '/skis' do
         @skis = Ski.all
-        erb :'skis/show'
+        erb :'skis/index'
     end
 
     get '/skis/new' do
@@ -28,7 +28,11 @@ class SkisController < ApplicationController
 
     get "/skis/:id/edit" do
         @ski = Ski.find(params[:id])
-        erb :'/skis/edit'
+        if @ski.user == current_user #only the current user can edit their ski
+            erb :'/skis/edit'
+        else
+            redirect "users/#{current_user.id}"
+        end
     end
 
     #Changes the attributes for the ski
