@@ -1,6 +1,9 @@
 <h1><%="#{@ski.brand} #{@ski.name }"%></h1>
 <p><%="Category => #{@ski.category}"%></p>
 
-<a href="/skis/<%= @ski.id %>/edit">Edit Ski</a>
+<a href="/skis/<%= @ski.id %>/edit">Edit Ski</a><br><br>
 
-<a href="">Remove Ski</a>
+<form class="" action="/skis<%= @ski.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value ="Remove Ski from Collection">
+</form>

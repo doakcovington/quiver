@@ -45,8 +45,19 @@ class SkisController < ApplicationController
         redirect "/skis/#{@ski.id}" #shows the ski
     end
 
-    # def find_ski_with_params_id
+    # def get_ski
     #     @ski = Ski.find(params[:id]) 
     # end
+
+    delete '/skis/:id' do
+        @ski = Ski.find(params[:id])
+        if @ski.user == current_user && logged_in? #only the current user can edit their ski
+            binding.pry
+            @ski.destroy
+            redirect "/skis/show"
+        else
+            redirect "users/#{current_user.id}"
+        end
+    end
 
 end
