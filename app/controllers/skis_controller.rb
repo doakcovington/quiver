@@ -30,4 +30,10 @@ class SkisController < ApplicationController
         erb :'/skis/edit'
     end
 
+    #Changes the attributes for the ski
+    patch '/skis/:id' do
+        @ski = Ski.find(params[:id]) #finds the ski
+        redirect erb :'/skis/show' #shows the ski
+    end
+
 end
