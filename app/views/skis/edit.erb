@@ -1,11 +1,12 @@
 <h1>Edit <%= @ski.name %></h1>
 
-<form class="" action="/skis" method="POST">
+<form class="" action="/skis/<%= @ski.id %>" method="POST">
+    <input type="hidden" name="_method" value="patch">
     <label for="name">Name:</label>
-    <input type="text" name="name" value=""><br>
+    <input type="text" name="name" value="<%= @ski.name %>"><br>
     <label for="brand">Brand:</label>
-    <input type="text" name="brand" value=""><br>
+    <input type="text" name="brand" value=" <%= @ski.brand %>"><br>
     <label for="category">Category:</label>
-    <input type="text" name="category" value=""><br>
+    <input type="text" name="category" value="<%= @ski.category %>"><br>
     <input type="submit" value="Submit">
 </form><br>
