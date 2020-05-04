@@ -1,6 +1,8 @@
 #NCWH
 #WDGTR
 require './config/environment'
+require 'sinatra/base'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -9,6 +11,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions #allows for a cookie to presist across multiple HTTP requests 
     set :session_secret, "prayforsnow" #allows for session id 
+    register Sinatra::Flash
   end
 
   get "/" do
