@@ -41,9 +41,16 @@ class SkisController < ApplicationController
     #Changes the attributes for the ski
     patch '/skis/:id' do
         @ski = Ski.find(params[:id]) #finds the ski
-        @ski.update(name: params[:name], brand: params[:brand], category: params[:category])
-        binding.pry
-        redirect "/skis/#{@ski.id}" #shows the ski
+        if logged_in?
+            if @ski.user == current_user && params[:name] != "" && params[:brand] != "" && params[:category] != ""
+                @ski.update(name: params[:name], brand: params[:brand], category: params[:category])
+                redirect "/skis/#{@ski.id}" #shows the ski
+            else
+                redirect "/skis/#{@ski.id}/edit"
+            end
+        else
+            redirect '/'
+        end
     end
 
     # def get_ski

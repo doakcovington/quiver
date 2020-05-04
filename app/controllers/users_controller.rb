@@ -28,8 +28,12 @@ class UsersController < ApplicationController # => Gives class every method insi
     post '/users' do
         #uses activerecord validations to make sure user entered in correct info
         @user = User.create(params)
-        session[:user_id] = @user.id
-        redirect "/users/#{@user.id}"
+        if @user.save
+            session[:user_id] = @user.id
+            redirect "/users/#{@user.id}"
+        else
+            redirect '/signup'
+        end
     end
 
     get '/users/:id' do
