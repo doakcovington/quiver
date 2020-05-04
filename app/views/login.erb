@@ -2,6 +2,10 @@
 
 <h2>Please Login</h2>
 
+<% if flash[:message] %>
+    <h4> <%= flash[:message] %></h4>
+<% end %>
+
 <form class="" action="/login" method="POST">
     <label for="email">Email:</label>
     <input type="text" name="email" value="">

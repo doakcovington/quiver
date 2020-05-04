@@ -14,6 +14,7 @@ class UsersController < ApplicationController # => Gives class every method insi
             session[:user_id] = @user.id #logs user in
             redirect "users/#{@user.id}"
         else
+            flash[:message] = "Login was invalid. Please sign up or try again."
             #tell user info is invalid
             #redirect to login page
             redirect '/login'
