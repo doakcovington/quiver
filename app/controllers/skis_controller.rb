@@ -15,7 +15,7 @@ class SkisController < ApplicationController
         if !logged_in?
             redirect '/login'
         end
-        if params[:name] != "" && params[:brand] != "" && params[:category] != "" #checks if all text fields contain text
+        if complete_form? #checks if all text fields contain text
             @ski = Ski.create(name: params[:name], brand: params[:brand], width: params[:width], category: params[:category], user_id: @current_user.id)
             binding.pry
              redirect "/skis/#{@ski.id}"
@@ -42,7 +42,7 @@ class SkisController < ApplicationController
     patch '/skis/:id' do
         @ski = Ski.find(params[:id]) #finds the ski
         if logged_in?
-            if @ski.user == current_user && params[:name] != "" && params[:brand] != "" && params[:category] != ""
+            if @ski.user == current_user && complete_form?
                 @ski.update(name: params[:name], brand: params[:brand], width: params[:width], category: params[:category])
                 redirect "/skis/#{@ski.id}" #shows the ski
             else
@@ -56,6 +56,16 @@ class SkisController < ApplicationController
     # def get_ski
     #     @ski = Ski.find(params[:id]) 
     # end
+
+    def complete_form?
+        flag = nil
+        if params[:name] != "" && params[:brand] != "" && params[:category] != "" && params[:width] != ""
+            flag = true
+        else
+            flag = false
+        end
+        flag
+    end
 
     delete '/skis/:id' do
         @ski = Ski.find(params[:id])
