@@ -1,3 +1,19 @@
+Quiver
+
+Quiver is a Sinatra web application that helps skiers manage their ski collection. A user can create an account, login, add skis, edit skis, and remove skis from their collection. 
+
+Installation
+
+Clone this repository
+
+Run:
+
+$ cd quiver
+$ bundle install
+$ rake db:migrate
+$ rake db:seed
+$ shotgun
+
 LICENSE
 
 Copyright <2020> <Doak Covington>
