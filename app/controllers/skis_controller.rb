@@ -1,10 +1,14 @@
 class SkisController < ApplicationController
 
     get '/skis' do
-        @user = current_user
-        @skis = current_user.skis
-        #binding.pry
-        erb :'skis/index'
+        if logged_in?
+            @user = current_user
+            @skis = current_user.skis
+            #binding.pry
+            erb :'skis/index'
+        else
+            redirect '/login'
+        end
     end
 
     get '/skis/new' do
