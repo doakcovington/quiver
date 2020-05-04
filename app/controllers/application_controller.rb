@@ -1,8 +1,7 @@
 #NCWH
 #WDGTR
-require './config/environment'
-require 'sinatra/base'
-require 'sinatra/flash'
+require './config/environment' #requires all gems in stack
+
 
 class ApplicationController < Sinatra::Base
 

@@ -1,7 +1,7 @@
 class SkisController < ApplicationController
 
     get '/skis' do
-        if logged_in?
+        if logged_in? # Can only access skis page if logged in
             @user = current_user
             @skis = current_user.skis
             #binding.pry
