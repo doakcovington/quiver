@@ -12,9 +12,20 @@
   }
 
   /* --- Welcome Page Styles --- */
+
+  a {
+    font-weight: bold;
+    color: white;
+  }
+
+  div.nav {
+    padding: 10px;
+    display: inline-block;
+  }
+  
   body {
     background-image: url("https://i.imgur.com/XbkqLjJ.png");
-    opacity: .85;
+    opacity: .9;
     background-repeat: no-repeat;
     color: white;
     font-family: Sans-Serif;
@@ -118,9 +129,4 @@
     font-size: 18px;
     line-height: 24px;
   }
-
-  .nav a {
-    color: white;
-  }
-  
 }
