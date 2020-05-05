@@ -12,20 +12,20 @@
   }
 
   /* --- Welcome Page Styles --- */
+  div.nav {
+    color: white;
+    padding: 10px;
+    display: inline-block;
+  }
 
   a {
     font-weight: bold;
     color: white;
   }
 
-  div.nav {
-    padding: 10px;
-    display: inline-block;
-  }
   
   body {
     background-image: url("https://i.imgur.com/XbkqLjJ.png");
-    opacity: .9;
     background-repeat: no-repeat;
     color: white;
     font-family: Sans-Serif;
@@ -37,7 +37,9 @@
   }
 
   .wrapper {
-    background: #1e4696;
+    background: #6382bf;
+    color: white;
+    opacity: .9;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
