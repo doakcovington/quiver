@@ -2,13 +2,21 @@
 
 <form class="" action="/skis/<%= @ski.id %>" method="POST">
     <input type="hidden" name="_method" value="patch">
+    
     <label for="name">Name:</label>
     <input type="text" name="name" value="<%= @ski.name %>"><br>
+    
     <label for="brand">Brand:</label>
     <input type="text" name="brand" value=" <%= @ski.brand %>"><br>
-    <label for="name">Width:</label>
+    
+    <label for="length">Length:</label>
+    <input type="number" name="length" value="<%= @ski.length %>"><br>
+    
+    <label for="width">Width:</label>
     <input type="number" name="width" value="<%= @ski.width %>"><br>
+    
     <label for="category">Category:</label>
     <input type="text" name="category" value="<%= @ski.category %>"><br>
+    
     <input type="submit" value="Submit">
 </form><br>

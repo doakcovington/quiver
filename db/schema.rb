@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20200505185453) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "width"
+    t.integer  "length"
   end
 
   create_table "users", force: :cascade do |t|
