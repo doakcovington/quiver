@@ -31,8 +31,9 @@ class SkisController < ApplicationController
     get "/skis/:id" do
         if !logged_in? #user can only view skis if they are logged in
             redirect '/login'
-        else 
+        else
             @ski = Ski.find(params[:id])
+            binding.pry
             erb :'/skis/show'
         end
     end
@@ -49,7 +50,7 @@ class SkisController < ApplicationController
     #Changes the attributes for the ski
     patch '/skis/:id' do
         @ski = Ski.find(params[:id]) #finds the ski
-        if !logged_in?
+        if logged_in?
             if @ski.user == current_user && complete_form?
                 @ski.update(name: params[:name], brand: params[:brand], width: params[:width], category: params[:category])
                 redirect "/skis/#{@ski.id}" #shows the ski
