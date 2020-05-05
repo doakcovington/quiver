@@ -13,10 +13,16 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-image: url("https://i.imgur.com/XbkqLjJ.png");
+    background-repeat: no-repeat;
+    background-color: white !important;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
 
   .wrapper {
@@ -112,4 +118,6 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  
 }
