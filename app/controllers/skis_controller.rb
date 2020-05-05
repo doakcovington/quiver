@@ -20,7 +20,7 @@ class SkisController < ApplicationController
             redirect '/login'
         end
         if complete_form? #checks if all text fields contain text
-            @ski = Ski.create(name: params[:name], brand: params[:brand], width: params[:width], category: params[:category], user_id: @current_user.id)
+            @ski = Ski.create(name: params[:name], brand: params[:brand], width: params[:width], length: params[:length], category: params[:category], user_id: @current_user.id)
             binding.pry
              redirect "/skis/#{@ski.id}"
         else
@@ -33,7 +33,6 @@ class SkisController < ApplicationController
             redirect '/login'
         else
             @ski = Ski.find(params[:id])
-            binding.pry
             erb :'/skis/show'
         end
     end
@@ -52,7 +51,7 @@ class SkisController < ApplicationController
         @ski = Ski.find(params[:id]) #finds the ski
         if logged_in?
             if @ski.user == current_user && complete_form?
-                @ski.update(name: params[:name], brand: params[:brand], width: params[:width], category: params[:category])
+                @ski.update(name: params[:name], brand: params[:brand], width: params[:width], length: params[:length], category: params[:category])
                 redirect "/skis/#{@ski.id}" #shows the ski
             else
                 redirect "/skis/#{@ski.id}/edit"
@@ -68,7 +67,7 @@ class SkisController < ApplicationController
 
     def complete_form?
         flag = nil
-        if params[:name] != "" && params[:brand] != "" && params[:category] != "" && params[:width] != ""
+        if params[:name] != "" && params[:brand] != "" && params[:category] != "" && params[:width] != "" && params[:length] != ""
             flag = true
         else
             flag = false
