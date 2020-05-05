@@ -4,6 +4,7 @@
 <% @skis.each do |ski| %>
     <h3>Name: <a href="/skis/<%= ski.id %>"><%= "#{ski.brand} #{ski.name}"%></a></h3>
     <p>Width: <%= ski.width %></p>
+    <p>Length: <%=  ski.length %></p>
     <p>Category: <%= ski.category %></p>
     <p>Created At: <%= ski.created_at %></p>
     <p> Last Edited At: <%= ski.updated_at %></p>
