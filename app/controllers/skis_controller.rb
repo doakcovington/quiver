@@ -30,13 +30,26 @@ class SkisController < ApplicationController
     end
 
     #shows specific ski in a users collection
+    # get "/skis/:id" do
+    #     if !logged_in? #user can only view skis if they are logged in
+    #         redirect '/login'
+    #     else #elsif @ski = Ski.find(params[:id]) is true
+    #         @ski = Ski.find(params[:id])
+    #         erb :'/skis/show'
+    #         binding.pry
+    #     end #else ski doesnt exist and redirect to index page
+    # end
+
     get "/skis/:id" do
-        if !logged_in? #user can only view skis if they are logged in
+        if !logged_in?
             redirect '/login'
-        else #elsif @ski = Ski.find(params[:id]) is true
-            @ski = Ski.find(params[:id])
-            erb :'/skis/show'
-        end #else ski doesnt exist and redirect to index page
+        elsif @ski = Ski.find(params[:id]).user_id != current_user.id 
+            redirect "users/#{current_user.id}"
+        else
+            @ski = Ski.find(params[id])
+            erb :'skis/show'
+        end
+
     end
 
     #Present a user with a form to edit an existing ski 
