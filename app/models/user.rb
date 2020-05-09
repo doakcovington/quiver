@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     #find the most common type of ski a user has?
 
     #wishlist?
-    
+
+
 
 end

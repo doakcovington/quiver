@@ -1,6 +1,6 @@
 class SkisController < ApplicationController
 
-    get '/skis' do
+    get '/skis' do #lists all skis in a users collection
         if logged_in? # Can only access skis page if logged in
             @user = current_user
             @skis = current_user.skis
@@ -11,32 +11,35 @@ class SkisController < ApplicationController
         end
     end
 
+    #Presents form for user to input new ski information
     get '/skis/new' do
         erb :'/skis/new'
     end
 
+    #Adds a new ski to a users collection
     post '/skis' do
         if !logged_in?
             redirect '/login'
         end
         if complete_form? #checks if all text fields contain text
             @ski = Ski.create(name: params[:name], brand: params[:brand], width: params[:width], length: params[:length], category: params[:category], user_id: @current_user.id)
-            binding.pry
              redirect "/skis/#{@ski.id}"
         else
             redirect '/skis/new'
-        end#
-    end
-
-    get "/skis/:id" do
-        if !logged_in? #user can only view skis if they are logged in
-            redirect '/login'
-        else
-            @ski = Ski.find(params[:id])
-            erb :'/skis/show'
         end
     end
 
+    #shows specific ski in a users collection
+    get "/skis/:id" do
+        if !logged_in? #user can only view skis if they are logged in
+            redirect '/login'
+        else #elsif @ski = Ski.find(params[:id]) is true
+            @ski = Ski.find(params[:id])
+            erb :'/skis/show'
+        end #else ski doesnt exist and redirect to index page
+    end
+
+    #Present a user with a form to edit an existing ski 
     get "/skis/:id/edit" do
         @ski = Ski.find(params[:id])
         if @ski.user == current_user #only the current user can edit their ski
@@ -75,6 +78,7 @@ class SkisController < ApplicationController
         flag
     end
 
+    #destorys ski from users collection
     delete '/skis/:id' do
         @ski = Ski.find(params[:id])
         if @ski.user == current_user && logged_in? #only the current user can edit their ski

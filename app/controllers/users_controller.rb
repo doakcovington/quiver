@@ -28,15 +28,12 @@ class UsersController < ApplicationController # => Gives class every method insi
 
     post '/users' do
         #uses activerecord validations to make sure user entered in correct info
-        #@user = User.create(params)
         @user_emails = User.all.collect{|user| user.email}
-        binding.pry
         if @user_emails.include?(params[:email])
             redirect '/signup'
         else
             @user = User.create(params)
         end
-        binding.pry
         if @user.save
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}"
