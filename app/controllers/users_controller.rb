@@ -54,9 +54,12 @@ class UsersController < ApplicationController # => Gives class every method insi
     get '/users/:id' do
         if !logged_in?
             redirect '/login'
-        else
+        end
+        if current_user.id.to_s == params[:id]
             @user = User.find_by(id: params[:id])
             erb :'/users/show'
+        else
+            redirect "/skis"
         end
     end
 
