@@ -28,22 +28,11 @@ class SkisController < ApplicationController
             redirect '/skis/new'
         end
     end
-
-    #shows specific ski in a users collection
-    # get "/skis/:id" do
-    #     if !logged_in? #user can only view skis if they are logged in
-    #         redirect '/login'
-    #     else #elsif @ski = Ski.find(params[:id]) is true
-    #         @ski = Ski.find(params[:id])
-    #         erb :'/skis/show'
-    #         binding.pry
-    #     end #else ski doesnt exist and redirect to index page
-    # end
-
+    
     get "/skis/:id" do
         if !logged_in?
             redirect '/login'
-        elsif @ski = Ski.find(params[:id]).user_id != current_user.id 
+        elsif @ski = Ski.find(params[:id]).user_id != current_user.id
             redirect "users/#{current_user.id}"
         else
             @ski = Ski.find(params[:id])
@@ -78,7 +67,7 @@ class SkisController < ApplicationController
     end
 
     def get_ski
-        @ski = Ski.find(params[:id]) 
+     @ski = Ski.find(params[:id])
     end
 
     def complete_form?
