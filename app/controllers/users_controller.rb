@@ -1,8 +1,12 @@
 class UsersController < ApplicationController # => Gives class every method inside ApplicationController
 
     #renders login page
-    get '/login' do 
-        erb :login
+    get '/login' do
+        if !logged_in?
+            erb :login
+        else
+            redirect "/skis"
+        end
     end
 
     post '/login' do
