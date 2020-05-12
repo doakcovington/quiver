@@ -30,6 +30,7 @@ class UsersController < ApplicationController # => Gives class every method insi
         #uses activerecord validations to make sure user entered in correct info
         @user_emails = User.all.collect{|user| user.email}
         if @user_emails.include?(params[:email])
+            flash[:message] = "Signup was invalid. Email is already connected to another account. Please use a different email and try again."
             redirect '/signup'
         else
             @user = User.create(params)
