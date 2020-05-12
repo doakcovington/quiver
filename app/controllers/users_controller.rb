@@ -6,7 +6,7 @@ class UsersController < ApplicationController # => Gives class every method insi
     end
 
     post '/login' do
-        #sets @user equal to current email address
+        #sets @user to current email address
         #if returns 'nil' then user needs to signup
         @user = User.find_by(email: params[:email])# email: is the key (find_by requires key/value pair)
         if @user && @user.authenticate(params[:password])
@@ -23,7 +23,11 @@ class UsersController < ApplicationController # => Gives class every method insi
 
     #renders signup page
     get '/signup' do
-        erb :'/users/signup'
+        if !logged_in?
+            erb :'/users/signup'
+        else
+            redirect "/skis"
+        end
     end
 
     post '/users' do
