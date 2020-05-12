@@ -46,7 +46,7 @@ class SkisController < ApplicationController
         elsif @ski = Ski.find(params[:id]).user_id != current_user.id 
             redirect "users/#{current_user.id}"
         else
-            @ski = Ski.find(params[id])
+            @ski = Ski.find(params[:id])
             erb :'skis/show'
         end
 
@@ -77,9 +77,9 @@ class SkisController < ApplicationController
         end
     end
 
-    # def get_ski
-    #     @ski = Ski.find(params[:id]) 
-    # end
+    def get_ski
+        @ski = Ski.find(params[:id]) 
+    end
 
     def complete_form?
         flag = nil
