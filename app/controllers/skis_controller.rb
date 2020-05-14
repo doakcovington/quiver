@@ -24,25 +24,29 @@ class SkisController < ApplicationController
         if complete_form? #checks if all text fields contain text
             @ski = Ski.create(name: params[:name], brand: params[:brand], width: params[:width], length: params[:length], category: params[:category], user_id: @current_user.id)
              redirect "/skis/#{@ski.id}"
-        else
+        else #if current_user.id == session[:user_id] only the current user can create a new ski
             redirect '/skis/new'
         end
     end
     
     get "/skis/:id" do
+        @ski = Ski.find(params[:id])
         if !logged_in?
             redirect '/login'
-        elsif @ski = Ski.find(params[:id]).user_id != current_user.id
-            redirect "users/#{current_user.id}"
-        else
-            @ski = Ski.find(params[:id])
+        end
+        if @ski && Ski.find(params[:id]).user_id == current_user.id
             erb :'skis/show'
+        else
+            redirect "/skis"
         end
 
     end
 
     #Present a user with a form to edit an existing ski 
     get "/skis/:id/edit" do
+        if !logged_in?
+            redirect '/login'
+        end
         @ski = Ski.find(params[:id])
         if @ski.user == current_user #only the current user can edit their ski
             erb :'/skis/edit'
